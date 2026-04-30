@@ -1,0 +1,52 @@
+---
+title: "a2_janderson+wlien"
+format: pdf
+editor: visual
+---
+
+```{r}
+#| echo: false
+```
+
+# SETUP
+
+## LOAD PACKAGES
+```{r}
+#install.packages("dataRetrieval")
+library(dataRetrieval)
+library(tidyverse)
+```
+
+## LOAD DATA (RETIRED)
+```{r}
+# siteNumbers <- c("14211720", "14211010", "14166000")
+# parameterCd <- "00010"  # water temperature
+# startDate <- "2010-01-01"
+# endDate <- "2023-12-31"
+
+# temp_data <- readNWISdv(siteNumbers, parameterCd, startDate, endDate)
+
+# write_csv(temp_data, "data.csv")
+```
+
+## READ DATA
+```{r}
+data <- read_csv("data.csv")
+```
+
+
+```{r}
+# rename columns for clarity
+colnames(data) <- c("agency_cd", "site_no", "Date", "temp_C")
+# extract some date info for use later
+temp_data$month = month(temp_data$Date, label=TRUE)
+temp_data$year = year(temp_data$Date)
+
+# check by plotting
+ggplot(temp_data, aes(x=Date, y=temp_C, color=site_no)) +
+  geom_line() +
+  labs(title="Stream Temperature at Willamette River Sites",
+       x="Date", y="Temperature (°C)", color="Site Number") +
+  theme_minimal()
+```
+
