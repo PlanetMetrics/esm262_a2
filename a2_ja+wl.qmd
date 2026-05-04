@@ -41,8 +41,8 @@ data <- read_csv("data.csv")
 # rename columns for clarity
 colnames(data) <- c("agency_cd", "site_no", "Date", "temp_C")
 # extract some date info for use later
-temp_data$month = month(temp_data$Date, label=TRUE)
-temp_data$year = year(temp_data$Date)
+data$month = month(temp_data$Date, label=TRUE)
+data$year = year(temp_data$Date)
 
 # check by plotting
 ggplot(data, aes(x=Date, y=temp_C, color=site_no)) +
