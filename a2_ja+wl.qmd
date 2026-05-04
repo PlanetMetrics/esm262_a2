@@ -66,6 +66,8 @@ stream_sum
 ```
 
 
+# WL Branch
+## August data
 ```{r}
 # filter for July temperatures
 aug_data <- subset(data, month == "八月")
@@ -74,3 +76,15 @@ aug_model <- glm(temp_C ~ year*site_no, data = aug_data)
 summary(aug_model)
 ```
 
+# JA Branch
+
+## march data
+
+```{r}
+library(tidyverse) 
+# filter for march temperatures
+march_data <- subset(data, month == "Mar")
+# fit a GLM model to see if there is a trend in March temperatures over time, separated by site
+march_model <- glm(temp_C ~ year*site_no, data = march_data)
+summary(march_model)
+```
