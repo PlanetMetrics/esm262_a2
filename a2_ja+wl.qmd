@@ -62,6 +62,15 @@ stream_sum <- data |>
   group_by(site_no) |>
   summarise(mean_temp=mean(temp_C), sd_temp=sd(temp_C), min_temp=min(temp_C), max_temp=max(temp_C))
 
-
 stream_sum
 ```
+
+
+```{r}
+# filter for July temperatures
+aug_data <- subset(data, month == "八月")
+# fit a GLM model to see if there is a trend in July temperatures over time, separated by sit
+aug_model <- glm(temp_C ~ year*site_no, data = aug_data)
+summary(aug_model)
+```
+
