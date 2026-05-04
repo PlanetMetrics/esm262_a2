@@ -65,3 +65,16 @@ stream_sum <- data |>
 
 stream_sum
 ```
+
+# JA Branch
+
+## march data
+
+```{r}
+library(tidyverse) 
+# filter for march temperatures
+march_data <- subset(data, month == "Mar")
+# fit a GLM model to see if there is a trend in March temperatures over time, separated by site
+march_model <- glm(temp_C ~ year*site_no, data = march_data)
+summary(march_model)
+```
