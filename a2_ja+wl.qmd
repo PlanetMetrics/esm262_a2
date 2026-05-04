@@ -52,6 +52,16 @@ ggplot(data, aes(x=Date, y=temp_C, color=site_no)) +
   theme_minimal()
 ```
 
-# Try Git Push Pull
+# Summary Statistic 
 
-try push here. Time 20250504 1452
+## mean, max, min temperature for each site
+
+```{r}
+stream_sum <- data |> 
+  select("site_no","temp_C") |>
+  group_by(site_no) |>
+  summarise(mean_temp=mean(temp_C)
+            )
+
+stream_sum
+```
