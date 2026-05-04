@@ -60,7 +60,7 @@ ggplot(data, aes(x=Date, y=temp_C, color=site_no)) +
 stream_sum <- data |> 
   select("site_no","temp_C") |>
   group_by(site_no) |>
-  summarise(mean_temp=mean(temp_C)
+  summarise(mean_temp=mean(temp_C), sd_temp=sd(temp_C), min_temp=min(temp_C), max_temp=max(temp_C)
             )
 
 stream_sum
