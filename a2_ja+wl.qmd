@@ -83,8 +83,39 @@ summary(aug_model)
 ```{r}
 library(tidyverse) 
 # filter for march temperatures
-march_data <- subset(data, month == "Mar")
+march_data <- subset(data, month == "三月")
 # fit a GLM model to see if there is a trend in March temperatures over time, separated by site
 march_model <- glm(temp_C ~ year*site_no, data = march_data)
 summary(march_model)
 ```
+
+```{r}
+
+monthly_mean <- data |> 
+  janitor::clean_names() |> 
+  filter(month %in% c("三月", "八月")) |>  # or "Mar", "Aug"
+  group_by(site_no, month, year) |> 
+  summarise(
+    mean_temp = mean(temp_c, na.rm = TRUE),
+    .groups = "drop"
+  )
+
+```
+
+```{r}
+ggplot(monthly_mean, aes(x = year, y = mean_temp, color = factor(site_no))) +
+  geom_point() +
+  geom_line() +
+  facet_wrap(~ month) +
+  scale_color_manual(
+    values = c("orange", "springgreen4", "gold"),
+    name = "Site"
+  ) +
+  labs(
+    title = "Mean Stream Temperature (March vs August)",
+    x = "Year",
+    y = "Mean monthly temperature (°C)"
+  ) +
+  theme_minimal()
+```
+
