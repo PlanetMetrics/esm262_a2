@@ -65,9 +65,10 @@ stream_sum <- data |>
 stream_sum
 ```
 
+# WL BRANCH
 
-# WL Branch
 ## August data
+
 ```{r}
 # filter for July temperatures
 aug_data <- subset(data, month == "八月") # or Aug this could be the computer language environment thing 
@@ -76,7 +77,7 @@ aug_model <- glm(temp_C ~ year*site_no, data = aug_data)
 summary(aug_model)
 ```
 
-# JA Branch
+# JA BRANCH
 
 ## march data
 
@@ -89,6 +90,7 @@ march_model <- glm(temp_C ~ year*site_no, data = march_data)
 summary(march_model)
 ```
 
+# ADDITIONAL ANALYSIS
 ```{r}
 
 monthly_mean <- data |> 
@@ -118,4 +120,3 @@ ggplot(monthly_mean, aes(x = year, y = mean_temp, color = factor(site_no))) +
   ) +
   theme_minimal()
 ```
-
